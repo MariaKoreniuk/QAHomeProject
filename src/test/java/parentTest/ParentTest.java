@@ -1,6 +1,8 @@
 package parentTest;
 
 
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,12 +25,12 @@ public class ParentTest {
     public void setUp() {
         if (browser == null || "chrome".equals(browser.toLowerCase())) {
 
-            File file = new File("./src/old_drivers/chromedriver.exe");
+            File file = new File("./src/main/java/old_drivers/chromedriver.exe");
             System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
 
             webDriver = new ChromeDriver();
         } else if ("firefox".equals(browser.toLowerCase())) {
-            File file = new File("./src/old_drivers/geckodriver.exe");
+            File file = new File("./src/main/java/old_drivers/geckodriver.exe");
             System.setProperty("webdriver.gecko.driver", file.getAbsolutePath());
             FirefoxOptions profile = new FirefoxOptions();
             profile.addPreference("browser.startup.page", 0);
@@ -41,7 +43,15 @@ public class ParentTest {
         loginPage= new LoginPage(webDriver);
         homePage= new HomePage(webDriver);
     }
+    @After
+    public void tearDown(){
 
+        webDriver.quit();
+    }
+
+    public void checkExpectedResult(String message, boolean expectedResult, boolean actualResult){
+        Assert.assertEquals(message,expectedResult,actualResult);
+    }
 }
 
 

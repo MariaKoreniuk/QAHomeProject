@@ -7,8 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends ParentPage{
-    @FindBy(xpath = ".//*[@class='pull-left image']")
-    private WebElement avatar;
+    @FindBy(xpath = "/html/body/div[4]/div[2]/div[4]/div/div[1]/div[1]/img")
+    private WebElement avatars;
 
 
 
@@ -17,7 +17,7 @@ public class HomePage extends ParentPage{
     }
 
     public boolean isAvatarPresent(){
-        return actionsWithOurElements.isElementDisplayed(avatar);
+        return actionsWithOurElements.isElementDisplayed(avatars);
     }
 
 
@@ -32,9 +32,9 @@ public class HomePage extends ParentPage{
         }
     }
 
-    public void checkIsAvatarDisplayed(){
-        Assert.assertTrue("Avatar is not present",isAvatarPresent());
-    }
+   // public void checkIsAvatarDisplayed(){
+    //    Assert.assertTrue("Avatar is not present",isAvatarPresent());
+//   }
 
 
 
