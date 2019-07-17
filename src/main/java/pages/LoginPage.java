@@ -7,9 +7,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
+import java.util.regex.Pattern;
+
 public class LoginPage extends ParentPage {
+
+    final String NewBASE_URL = "https://account.kyivstar.ua";
+
     public LoginPage(WebDriver webDriver) {
-        super(webDriver, "/login");
+        super(webDriver, "/cas/login?service=http%3A%2F%2Fb2b.kyivstar.ua%3A80%2Ftbmb%2Fdisclaimer%2Fshow.do");
+        String partUrl="/cas/login?service=http%3A%2F%2Fb2b.kyivstar.ua%3A80%2Ftbmb%2Fdisclaimer%2Fshow.do";
+        expectedUrl = NewBASE_URL + partUrl;
     }
 
     @FindBy(xpath=".//input[@class='form-control OVDENX-i-a']")
@@ -25,7 +32,7 @@ public class LoginPage extends ParentPage {
     public void openPage() {
 
         try {
-            webDriver.get("https://account.kyivstar.ua/cas/login?service=http%3A%2F%2Fnew.kyivstar.ua%2Fecare%2F%3Fstate%3Dlogout");
+            webDriver.get("https://account.kyivstar.ua/cas/login?service=http%3A%2F%2Fb2b.kyivstar.ua%3A80%2Ftbmb%2Fdisclaimer%2Fshow.do");
             logger.info("LoginPage was opened");
 
         } catch (Exception e) {
@@ -39,10 +46,6 @@ public class LoginPage extends ParentPage {
         actionsWithOurElements.enterTextIntoInput(inputNumber,number);
 
     }
-        public void enterTextInToInputPass(String pass) {
-            actionsWithOurElements.enterTextIntoInput(inputPass, pass);
-        }
-
 
 
     public void clickOnButtonDali(){
@@ -54,6 +57,10 @@ public class LoginPage extends ParentPage {
             logger.error("Can not work with element ");
             Assert.fail("Can not work with element");
         }
+    }
+
+    public void enterTextInToInputPass(String pass) {
+        actionsWithOurElements.enterTextIntoInput(inputPass, pass);
     }
 
     public void clickOnButtonVhod(){
@@ -68,15 +75,15 @@ public class LoginPage extends ParentPage {
     }
 
     public void loginWithCred(String number, String pass) {
-      //  openPage();
-        //checkCurrentUrl();
-       // enterTextIntoInputNumber(inputNumber);
-     //   enterTextInToInputPass(pass);
-                //clickOnButtonVhod();
+       openPage();
+       checkCurrentUrl();
+       enterTextIntoInputLogin(number);
+       clickOnButtonDali();
+       enterTextInToInputPass(pass);
+                clickOnButtonVhod();
     }
 
-   public void validLogin() {
-     loginWithCred("380685053287","qwerty1992");
+   public void validLogin() { loginWithCred("380685053287","qwerty1992");
     }
 }
 

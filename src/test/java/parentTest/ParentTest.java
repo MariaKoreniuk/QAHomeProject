@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.Tariffplan;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +21,7 @@ public class ParentTest {
     String browser = System.getProperty("browser");
     protected LoginPage loginPage;
     protected HomePage homePage;
+    protected Tariffplan tariffplan;
 
     @Before
     public void setUp() {
@@ -42,6 +44,7 @@ public class ParentTest {
 
         loginPage= new LoginPage(webDriver);
         homePage= new HomePage(webDriver);
+        tariffplan=new Tariffplan(webDriver);
     }
     @After
     public void tearDown(){
