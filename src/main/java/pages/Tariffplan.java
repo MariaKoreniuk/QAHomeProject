@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +15,7 @@ public class Tariffplan extends ParentPage{
 
     @FindBy(xpath = ".//button[@data-modal-url='/ecare/activate-plan/4G_UnlimMAX_2018_MMPP_DEFAULT']")
     private WebElement buttonActivate;
-   @FindBy (xpath = ".//button[@class='info-block__action-link'and text()='Cancel']")
+  // @FindBy (xpath = ".//button[@class='info-block__action-link'and text()='Cancel']")
     private WebElement buttonCancel;
 
 
@@ -43,7 +44,18 @@ public class Tariffplan extends ParentPage{
 
   public  void clickOnButtonCancel(){
 
-      actionsWithOurElements.clickOnElement(buttonCancel);
+        actionsWithOurElements.clickOnElement(buttonCancel);
+
+    /*  try{
+          WebElement buttonCancel=webDriver.findElement(By.name("Cancel"));
+          buttonCancel.click();
+          logger.info("Button cancel was clicked");
+
+      } catch (Exception e) {
+          logger.error("Can not work with element ");
+          Assert.fail("Can not work with element");
+
+     */  }
   }
 
-}
+

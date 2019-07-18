@@ -1,6 +1,7 @@
 package parentTest;
 
 
+import myProfile.MyProfileTest;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import pages.EditMyProfile;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.Tariffplan;
@@ -22,6 +24,7 @@ public class ParentTest {
     protected LoginPage loginPage;
     protected HomePage homePage;
     protected Tariffplan tariffplan;
+    protected EditMyProfile editMyProfile;
 
     @Before
     public void setUp() {
@@ -45,6 +48,7 @@ public class ParentTest {
         loginPage= new LoginPage(webDriver);
         homePage= new HomePage(webDriver);
         tariffplan=new Tariffplan(webDriver);
+        editMyProfile= new EditMyProfile(webDriver);
     }
     @After
     public void tearDown(){

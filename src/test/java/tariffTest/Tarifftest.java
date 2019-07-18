@@ -8,11 +8,6 @@ public class Tarifftest extends ParentTest {
     @Test
 
  public void AddNewTariff() {
-     //   loginPage.openPage();
-       //loginPage.enterTextIntoInputLogin("380685053287");
-      // loginPage.clickOnButtonDali();
-        //loginPage.enterTextInToInputPass("qwerty1992");
-         //loginPage.clickOnButtonVhod();
         loginPage.validLogin();
         homePage.isAvatarPresent();
         homePage.clickOnCompatiblePlans();
