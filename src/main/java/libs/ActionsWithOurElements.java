@@ -1,5 +1,6 @@
 package libs;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -142,7 +143,22 @@ public class ActionsWithOurElements {
         }
     }
 
+    public String getTextFromElement(WebElement element) {
+        this.webDriver= webDriver;
+        wait10= new WebDriverWait(webDriver,10);
+        wait15 = new WebDriverWait(webDriver,15);
+        try {
+            logger.info("text was retrieved from Element"+ element.getAttribute("value"));
+            return element.getAttribute("value");
 
+
+        } catch (Exception e) {
+
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+        return "";
+    }
 
 
 }

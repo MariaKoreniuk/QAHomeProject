@@ -36,10 +36,6 @@ public class HomePage extends ParentPage {
         }
     }
 
-    // public void checkIsAvatarDisplayed(){
-    //    Assert.assertTrue("Avatar is not present",isAvatarPresent());
-//   }
-
     public void clickOnCompatiblePlans() {
         actionsWithOurElements.clickOnElement(compatiblePlans);
     }

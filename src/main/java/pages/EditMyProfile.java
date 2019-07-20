@@ -18,9 +18,13 @@ public class EditMyProfile extends ParentPage{
     @FindBy(xpath = ".//input[@name='lastName']")
     protected WebElement creatLastName;
 
-    @FindBy(xpath = ".//button[@name='submit' and @value='Save changes']")
+    @FindBy(xpath = ".//form/div[3]/div/div/div/button")
     protected WebElement saveChanges;
 
+
+    String firstName="Maria";
+    String newfirstName="";
+    String firstNameSuffix= "aaa";
     public EditMyProfile (WebDriver webDriver) {
         super(webDriver, "/");
     }
@@ -45,12 +49,21 @@ public class EditMyProfile extends ParentPage{
 
         actionsWithOurElements.clickOnElement(buttonEdit);
     }
+    public String getFirstName(){
+         firstName=actionsWithOurElements.getTextFromElement(creatName);
+         return firstName;
+    }
 
+    public String getNewFirstName(){
+        newfirstName=actionsWithOurElements.getTextFromElement(creatName);
 
-public void enterFirstName(String firstName){
-       actionsWithOurElements.enterTextIntoInput(creatName,firstName);
-
-
+        return newfirstName;
+    }
+    public void enterFirstName(){
+        actionsWithOurElements.enterTextIntoInput(creatName,firstName);
+    }
+    public void enterNewFirstName(){
+       actionsWithOurElements.enterTextIntoInput(creatName,firstName + firstNameSuffix);
     }
     public void enterLastName(String lastName){
         actionsWithOurElements.enterTextIntoInput(creatLastName,lastName);
@@ -58,4 +71,16 @@ public void enterFirstName(String firstName){
     public void clickOnbuttonSave(){
         actionsWithOurElements.clickOnElement(saveChanges);
     }
+
+    public boolean checkFirstName(){
+        System.out.println("firstName:"+firstName+" newfirstName:"+newfirstName);
+       if( newfirstName.equals(firstName + firstNameSuffix)){
+           return true;
+
+        }
+          return false;
+
+    }
 }
+
+

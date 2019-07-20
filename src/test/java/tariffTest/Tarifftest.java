@@ -11,11 +11,10 @@ public class Tarifftest extends ParentTest {
         loginPage.validLogin();
         homePage.isAvatarPresent();
         homePage.clickOnCompatiblePlans();
-       tariffplan.checkCurrentUrl();
+        tariffplan.checkCurrentUrl();
         tariffplan.clickOnButtonActivate();
-       tariffplan.clickOnButtonCancel();
-
-       //checkExpectedResult("The cancel button is working", true, homePage.isAvatarPresent());
-
+        tariffplan.clickOnButtonCancel();
+        checkExpectedResult("The cancel  button isn't working", true, tariffplan.checkCancelResult());
+        System.out.println("Test completed successfully");
     }
 }

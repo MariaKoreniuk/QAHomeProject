@@ -8,19 +8,17 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.regex.Pattern;
 
-public class Tariffplan extends ParentPage{
+public class Tariffplan extends ParentPage {
 
     final String BASE_URL = "https://new.kyivstar.ua";
     String expectedUrl;
 
     @FindBy(xpath = ".//button[@data-modal-url='/ecare/activate-plan/4G_UnlimMAX_2018_MMPP_DEFAULT']")
     private WebElement buttonActivate;
-  // @FindBy (xpath = ".//button[@class='info-block__action-link'and text()='Cancel']")
+    @FindBy(xpath = "//form[@action='/ecare/order/placeOrder']/div[2]/div/div/div/div/div/button[text()='Cancel']")
     private WebElement buttonCancel;
 
-
-    // @FindBy(xpath = ".//button[@class='info-block__action-link'and text()='Cancel']")
-    public Tariffplan (WebDriver webDriver) {
+    public Tariffplan(WebDriver webDriver) {
         super(webDriver, "/ecare/compatiblePlans");
     }
 
@@ -38,24 +36,28 @@ public class Tariffplan extends ParentPage{
             Assert.fail("Can not get url");
         }
     }
+
     public void clickOnButtonActivate() {
         actionsWithOurElements.clickOnElement(buttonActivate);
     }
 
-  public  void clickOnButtonCancel(){
+    public void clickOnButtonCancel() {
 
         actionsWithOurElements.clickOnElement(buttonCancel);
 
-    /*  try{
-          WebElement buttonCancel=webDriver.findElement(By.name("Cancel"));
-          buttonCancel.click();
-          logger.info("Button cancel was clicked");
 
-      } catch (Exception e) {
-          logger.error("Can not work with element ");
-          Assert.fail("Can not work with element");
+}
 
-     */  }
-  }
+    public boolean checkCancelResult(){
+        try {
+            checkCurrentUrl();
+            return true;
+        }catch (Exception e) {
+
+            logger.error("Wrong url after click on Cancel");
+            return false;
+        }
+        }
+    }
 
 

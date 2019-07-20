@@ -80,7 +80,7 @@ public class LoginPage extends ParentPage {
        enterTextIntoInputLogin(number);
        clickOnButtonDali();
        enterTextInToInputPass(pass);
-                clickOnButtonVhod();
+       clickOnButtonVhod();
     }
 
    public void validLogin() { loginWithCred("380685053287","qwerty1992");

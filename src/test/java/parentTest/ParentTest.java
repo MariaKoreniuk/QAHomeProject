@@ -9,10 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import pages.EditMyProfile;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.Tariffplan;
+import pages.*;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +22,7 @@ public class ParentTest {
     protected HomePage homePage;
     protected Tariffplan tariffplan;
     protected EditMyProfile editMyProfile;
+    protected ChangePassword changePassword;
 
     @Before
     public void setUp() {
@@ -49,6 +47,7 @@ public class ParentTest {
         homePage= new HomePage(webDriver);
         tariffplan=new Tariffplan(webDriver);
         editMyProfile= new EditMyProfile(webDriver);
+        changePassword=new ChangePassword(webDriver);
     }
     @After
     public void tearDown(){
@@ -58,6 +57,7 @@ public class ParentTest {
 
     public void checkExpectedResult(String message, boolean expectedResult, boolean actualResult){
         Assert.assertEquals(message,expectedResult,actualResult);
+
     }
 }
 
