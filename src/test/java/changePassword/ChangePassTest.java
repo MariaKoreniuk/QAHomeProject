@@ -4,9 +4,6 @@ import org.junit.Test;
 import parentTest.ParentTest;
 
 public class ChangePassTest extends ParentTest {
-    final  String pass1="qwerty193392";
-    final String pass2="qwerty193392";
-
 
 
     @Test
@@ -16,9 +13,24 @@ public class ChangePassTest extends ParentTest {
         homePage.clickOnMyProfile();
         editMyProfile.checkCurrentUrl();
         changePassword.clickOnbuttonChangePass();
-        changePassword.NewPassword(pass1);
-        changePassword.ConfirmPassword(pass2);
+        changePassword.clickShowPass();
+        changePassword.setPassword(loginPage.getPasword());
+        changePassword.NewPassword();
+        changePassword.ConfirmPassword();
+
         changePassword.SavePassword();
+        loginPage.logout();
+        checkExpectedResult("New password was not saved", true, loginPage.loginWithPassword(changePassword.getNewPassword()));
+        homePage.clickOnMyProfile();
+        editMyProfile.checkCurrentUrl();
+        changePassword.clickOnbuttonChangePass();
+        changePassword.clickShowPass();
+        changePassword.SetOldPassword();
+        changePassword.ConfirmOldPassword();
+
+        changePassword.SavePassword();
+        loginPage.logout();
+        checkExpectedResult("Old password was not restored ", true, loginPage.loginWithPassword(loginPage.getPasword()));
 
     }
 

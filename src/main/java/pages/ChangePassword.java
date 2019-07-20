@@ -15,6 +15,13 @@ public class ChangePassword extends ParentPage {
     @FindBy(xpath =".//button[text()='Save']")
     protected WebElement savePass;
 
+    @FindBy(xpath =".//section/div/div/div[4]/div[2]/i")
+    protected WebElement showPass;
+
+    String password = "";
+    String passSufix="12";
+
+
 
     public ChangePassword(WebDriver webDriver) {
         super(webDriver, "/");
@@ -24,16 +31,40 @@ public class ChangePassword extends ParentPage {
 
         actionsWithOurElements.clickOnElement(changePass);
     }
-
-    public void NewPassword(String pass1) {
-        actionsWithOurElements.enterTextIntoInput(newPass, pass1);
+    public void SetOldPassword() {
+        actionsWithOurElements.enterTextIntoInput(newPass, password);
     }
 
-    public void ConfirmPassword(String pass2) {
-        actionsWithOurElements.enterTextIntoInput(confPass, pass2);
+    public void NewPassword() {
+        actionsWithOurElements.enterTextIntoInput(newPass, password+passSufix);
     }
 
+    public String getPassword(){
+        return password;
+
+    }
+    public void setPassword(String pass){
+         password=pass;
+
+    }
+    public String getNewPassword(){
+        return password+ passSufix;
+
+    }
+
+    public void ConfirmPassword() {
+        actionsWithOurElements.enterTextIntoInput(confPass, password+ passSufix);
+    }
+    public void ConfirmOldPassword() {
+        actionsWithOurElements.enterTextIntoInput(confPass, password);
+    }
     public void SavePassword(){
         actionsWithOurElements.clickOnElement(savePass);
+    }
+
+
+    public void clickShowPass(){
+        actionsWithOurElements.clickOnElement(showPass);
+
     }
 }

@@ -12,7 +12,8 @@ import java.util.regex.Pattern;
 public class LoginPage extends ParentPage {
 
     final String NewBASE_URL = "https://account.kyivstar.ua";
-
+    final String number ="380685053287";
+    final String password = "qwerty19921212";
     public LoginPage(WebDriver webDriver) {
         super(webDriver, "/cas/login?service=http%3A%2F%2Fb2b.kyivstar.ua%3A80%2Ftbmb%2Fdisclaimer%2Fshow.do");
         String partUrl="/cas/login?service=http%3A%2F%2Fb2b.kyivstar.ua%3A80%2Ftbmb%2Fdisclaimer%2Fshow.do";
@@ -27,6 +28,8 @@ public class LoginPage extends ParentPage {
     private WebElement buttonDali;
     @FindBy (xpath = ".//button[@class='btn btn-default']")
     private WebElement buttonVhod;
+    @FindBy (xpath = ".//a[@name='Logout']")
+    private WebElement logout;
 
 
     public void openPage() {
@@ -82,8 +85,26 @@ public class LoginPage extends ParentPage {
        enterTextInToInputPass(pass);
        clickOnButtonVhod();
     }
+    public boolean loginWithPassword( String pass) {
+        try {
+            openPage();
+            enterTextIntoInputLogin(number);
+            clickOnButtonDali();
+            enterTextInToInputPass(pass);
+            clickOnButtonVhod();
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println("loginWithPassword failed:" +e.getMessage());
+            return false;
+        }
+    }
+    public String getPasword(){return password; }
+    public void validLogin() { loginWithCred(number,password);
+    }
 
-   public void validLogin() { loginWithCred("380685053287","qwerty1992");
+    public void logout(){
+        actionsWithOurElements.clickOnElement(logout);
     }
 }
 
