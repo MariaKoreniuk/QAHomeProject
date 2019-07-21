@@ -1,20 +1,21 @@
 package pages;
 
-import org.junit.Assert;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends ParentPage {
-    @FindBy(xpath = "/html/body/div[4]/div[2]/div[4]/div/div[1]/div[1]/img")
+    @FindBy(xpath = "//div[4]/div[2]/div[4]/div/div[1]/div[1]/img")
     private WebElement avatars;
-    //   @FindBy(xpath = ".//div[1]/div//ul/li[3]/a[@href='/ecare/compatiblePlans']" )
-    @FindBy(xpath = "/html/body/div[4]/div[2]/div[8]/div/ul/li[3]/a")
+    @FindBy(xpath = "//div[4]/div[2]/div[8]/div/ul/li[3]/a")
     private WebElement compatiblePlans;
 
     @FindBy(xpath = ".//img[@src='/ecare/_ui/desktop/theme-kyivstar/images/profile-default-picture.png']")
     private WebElement myProfile;
+
+    @FindBy(xpath =".//div[@class='info-block__wrapper info-block__equalize-height info-block__equalize-height-by-width']/div[2]/div[2]/a")
+    protected  WebElement servicePlan;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver, "/");
@@ -25,16 +26,6 @@ public class HomePage extends ParentPage {
     }
 
 
-    public boolean authorizationPage() {
-        try {
-            return webDriver.findElement(By.xpath(".//div[@class='login-box-body']")).isDisplayed();
-        } catch (Exception e) {
-
-            return false;
-
-
-        }
-    }
 
     public void clickOnCompatiblePlans() {
         actionsWithOurElements.clickOnElement(compatiblePlans);
@@ -45,6 +36,21 @@ public class HomePage extends ParentPage {
         actionsWithOurElements.clickOnElement(myProfile);
     }
 
-}
+    public boolean checkServicePlan(){
+
+        try {
+            String tariffPlan = actionsWithOurElements.getTextFromlink(servicePlan);
+            if(tariffPlan.isEmpty()){
+                return false;
+            }
+            System.out.println("tariffPlan:"+tariffPlan);
+            return true;
+
+        }catch (Exception e) {
+
+            logger.error("The name of service plan is missing");
+            return false;
+        }
+}}
 
 

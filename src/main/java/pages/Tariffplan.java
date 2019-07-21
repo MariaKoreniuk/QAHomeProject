@@ -47,8 +47,7 @@ public class Tariffplan extends ParentPage {
 
 
 }
-
-    public boolean checkCancelResult(){
+     public boolean checkCancelResult(){
         try {
             checkCurrentUrl();
             return true;

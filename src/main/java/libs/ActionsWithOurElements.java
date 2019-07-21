@@ -50,33 +50,6 @@ public class ActionsWithOurElements {
 
     }
 
-    public void selectTextInDD(WebElement webElement, String text) {
-        try {
-            webElement.click();
-            logger.info("Element was clicked");
-            webDriver.findElement(By.xpath(".//*[text()='" + text + "']")).click();
-            logger.info("Element was clicked");
-        } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
-
-        }
-    }
-
-    public void selectTextInDDByJava(WebElement dropDown, String text) {
-        try {
-            Select select = new Select(dropDown);
-            select.selectByVisibleText(text);
-            logger.info(text + " was selected in DD");
-
-        } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
-
-
-        }
-    }
-
     public boolean isElementDisplayed(WebElement element) {
         try{
             return element.isDisplayed();
@@ -86,47 +59,6 @@ public class ActionsWithOurElements {
         }
     }
 
-    public boolean isElementDisplayed(String locator) {
-        try{
-            return isElementDisplayed(webDriver.findElement(By.xpath(locator)));
-
-        }catch (Exception e){
-            return false;
-
-        }    }
-
-    public void setStatusToCheck(WebElement checkBox,String status){
-        logger.info("Status: " + status.toLowerCase());
-        boolean isStatusCheck = "check".equals(status.toLowerCase());
-        boolean isStatusUncheck = "uncheck".equals(status.toLowerCase());
-        if (isStatusCheck||isStatusUncheck){
-
-            if (checkBox.isSelected() && isStatusCheck){
-                logger.info("Check is already checked");
-            }
-            else if (checkBox.isSelected()&& isStatusUncheck){
-                clickOnElement(checkBox);
-            }else if(!checkBox.isSelected()&& isStatusCheck){
-                clickOnElement(checkBox);
-
-            } else if (!checkBox.isSelected()&& isStatusUncheck){
-                logger.info("CheckBox is already uncheck");
-            }
-        }else {
-            Assert.fail("Status should be 'check ' or 'uncheck'");
-        }
-
-    }
-
-    public  void clickOnElement(String locator){
-
-        try{
-            clickOnElement(webDriver.findElement(By.xpath(locator)));
-        }catch (Exception e){
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
-        }
-    }
     public void enterTextIntoInput(TypifiedElement element, String text) {
         this.webDriver= webDriver;
         wait10= new WebDriverWait(webDriver,10);
@@ -150,8 +82,6 @@ public class ActionsWithOurElements {
         try {
             logger.info("text was retrieved from Element"+ element.getAttribute("value"));
             return element.getAttribute("value");
-
-
         } catch (Exception e) {
 
             logger.error("Can not work with element");
@@ -160,4 +90,19 @@ public class ActionsWithOurElements {
         return "";
     }
 
+
+    public String getTextFromlink(WebElement element) {
+        this.webDriver= webDriver;
+        wait10= new WebDriverWait(webDriver,10);
+        wait15 = new WebDriverWait(webDriver,15);
+        try {
+            logger.info("text was retrieved from Element"+ element.getText());
+            return element.getText();
+        } catch (Exception e) {
+
+            logger.error("Can not work with element");
+            Assert.fail("Can not work with element");
+        }
+        return "";
+    }
 }

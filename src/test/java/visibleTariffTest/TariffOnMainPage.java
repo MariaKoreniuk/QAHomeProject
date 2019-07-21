@@ -1,13 +1,14 @@
-package loginTEST;
+package visibleTariffTest;
 
 import org.junit.Test;
 import parentTest.ParentTest;
 
-
-public class LoginTestWithPageObject extends ParentTest {
+public class TariffOnMainPage extends ParentTest {
 
     @Test
-    public void validLogin() {
+
+    public void CheckTariff(){
+
         loginPage.openPage();
 
         loginPage.enterTextIntoInputLogin("380685053287");
@@ -15,11 +16,9 @@ public class LoginTestWithPageObject extends ParentTest {
         loginPage.enterTextInToInputPass("qwerty19921212");
         loginPage.clickOnButtonVhod();
 
-       checkExpectedResult("Avatar is not present", true, homePage.isAvatarPresent());
-
+checkExpectedResult("The name of service plan is missing",true,homePage.checkServicePlan());
     }
 
+
+
 }
-
-
-
